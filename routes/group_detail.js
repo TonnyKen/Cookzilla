@@ -17,11 +17,16 @@ router.get('/', function (req, res) {
         if (err)throw err;
         var meetings = rows;
         console.log({members:members, meetings:meetings, group:gname});
-        res.render('groups_detail',{members:members, meetings:meetings, group:gname});
+        if(!req.session.uid) {
+          res.render('groups_detail',{members:members, meetings:meetings, group:gname, userinfo:false});
+        }
+        else {
+          res.render('groups_detail',{members:members, meetings:meetings, group:gname, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+        }
+
       });
-      // And done with the connection.
-    connection.release();
     });
+    connection.release();
   });
 });
 

@@ -21,9 +21,10 @@
 										<thead>
 										  <tr>
 											<th>Meeting Name</th>
-                      <th>Location</th>
+                                            <th>Belongs to Group</th>
+                                            <th>Location</th>
 											<th style="width:25%">Start Time</th>
-                      <th>Last</th>
+                                            <th>Last</th>
 										  </tr>
 										</thead>
 										<tbody>
@@ -31,7 +32,8 @@
                           <li>
                               <tr>
 
-                              <td><a href="/group_detail?gname=<%= meetings[i].GNAME %>"><%= meetings[i].MNAME %></a></td>
+                              <td><a href="/meetings?meeting=<%= meetings[i].MNAME %>"><%= meetings[i].MNAME %></a></td>
+                            <td><a href="/group_detail?gname=<%= meetings[i].GNAME %>"><%= meetings[i].GNAME %></a></td>
                               <td><%= meetings[i].MLOCATION %></td>
                               <td><%= meetings[i].MTIME %></td>
                               <td><%= meetings[i].LASTTIME %></td>
@@ -69,4 +71,3 @@
   </div>
       <!-- /.modal-dialog -->
     </div>
-<%- include('./footer') %>

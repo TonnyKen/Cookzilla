@@ -25,4 +25,5 @@ module.exports = function(app){
     app.use('/logout', require('./logout'));
     app.use('/reviewhis', require('./reviewhis'));
     app.use('/comment', require('./comment'));
+    app.use('/meeting_detail', require('./meeting_detail'));
 };

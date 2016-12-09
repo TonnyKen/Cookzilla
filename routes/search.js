@@ -6,7 +6,7 @@ router.post('/', function (req, res) {
     console.log('Now in ./search post page, keyword',req.body.search_value);
     if (typeof req.body.search_value !== 'undefined') {
         keyword = req.body.search_value;
-        search_query = 'SELECT DISTINCT RID, TITLE FROM RECIPE NATURAL JOIN ABOUT NATURAL JOIN TAG WHERE TITLE LIKE "%fried%" OR DESCRIPTION LIKE "%' + keyword + '%" OR TNAME LIKE "%'+ keyword + '%";';
+        search_query = 'SELECT DISTINCT RID, TITLE FROM RECIPE NATURAL JOIN ABOUT NATURAL JOIN TAG WHERE TITLE LIKE "%' + keyword + '%" OR DESCRIPTION LIKE "%' + keyword + '%" OR TNAME LIKE "%'+ keyword + '%";';
         pool.getConnection(function(err, connection) {
           connection.query(search_query, function(err, rows) {
             if(err)throw err;

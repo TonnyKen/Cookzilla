@@ -12,8 +12,8 @@ router.get('/', function (req, res) {
     connection.query(query, function(err, rows) {
       if (err)throw err;
       var reports = rows;
-      var number_of_reports = rows.length;
-      res.render('meeting_detail',{mname:mname, reports:reports, number_of_reports:number_of_reports, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+      var number_of_reports = members.length;
+      res.render('groups_detail',{reports:reports, number_of_reports:number_of_reports});
       // And done with the connection.
     connection.release();
     });

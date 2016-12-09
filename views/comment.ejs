@@ -1,18 +1,18 @@
 <%- include('./header') %>
 <link href="css/comment.css" rel="stylesheet">
+<script src="js/bootstrap-rating-input.min.js" type="text/javascript"></script>
+<script src="js/comment.js" type="text/javascript"></script>
 <div class="container">
 
-<h1>Comment Here<%=rid%></h1>
+<h1>Comment Here</h1>
 
 <!-- wrap -->
+
 <div id="wrap">
   <div id="main">
   <div class="row">
   <div class="col-md-5">
   <h3 class="heading">Comments and Responses</h3>
-  </div>
-  <div class="col-md-7">
-  <div id="upper_blank"></div>
   </div>
   </div>
   </div>
@@ -26,27 +26,31 @@
   <form action="/comment" method="POST" id="commentform">
 
   <div id="comment-name" class="form-row">
-  <input type = "text" placeholder = "title (required)" name = "title"  id = "name" required="">
+  <input type = "text" placeholder = "title (required)" name = "title"  id = "title" required="">
   </div>
+  <br>
   <div id="comment-email" class="form-row">
-  <input type = "text" placeholder = "Review (will not be published) (required)" name = "demail"  id = "email" required="">
+  <input type = "text" placeholder = "Review (will not be published) (required)" name = "demail"  id = "review" required="">
   </div>
-
+  <br>
+  <span> Rating <input type="number" name="your_awesome_parameter" id="some_id" class="rating form-row" /></span>
+  <br>
   <div id="comment-message" class="form-row">
   <textarea name = "comment" placeholder = "Suggestion" id = "comment" ></textarea>
   </div>
-  <a href="#"><input type="submit" name="dsubmit" id="commentSubmit" value="Submit Comment"></a>
+  <a href="#"><input type="button" name="dsubmit" id="commentSubmit" value="Submit Comment"></a>
   </form>
+  <p hidden id="hrid"><%=rid%></p>
+  </div>
+  </div>
+  </div>
+  <!-- Stars -->
 
-  </div>
-  </div>
-  </div>
 </div>
 </div>
 
 <script src="js/jquery.js"></script>
 <script src="js/main.js"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 
