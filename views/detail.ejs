@@ -24,10 +24,9 @@
                 <p><%= Recipe.DESCRIPTION %></p>
                 <h3>Element Details</h3>
                 <ul>
-                    <li>Lorem Ipsum</li>
-                    <li>Dolor Sit Amet</li>
-                    <li>Consectetur</li>
-                    <li>Adipiscing Elit</li>
+                  <% for(var i=0; i < elements.length; i++) { %>
+                      <li><%= elements[i].i_name %> : <%= elements[i].amount %></li>
+                  <% } %>
                 </ul>
                 <h3>Related Tags</h3>
                 <% for(var i=0; i < Tags.length; i++) { %>
@@ -47,7 +46,27 @@
 
         </div>
         <!-- /.row -->
+        <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-10">
 
+            <%if (review) { %>
+              <a href="/review?rid=<%= Recipe.RID %>" class="btn btn-danger">
+                <!-- <span class="glyphicon glyphicon-plus"></span>
+                <span class="sr-only">Add Price</span> -->
+                Create Review
+              </a>
+            <% } %>
+            <a href="/reviewhis?rid=<%= Recipe.RID %>" class="btn btn-danger" style="float:right">
+              <!-- <span class="glyphicon glyphicon-plus"></span>
+              <span class="sr-only">Add Price</span> -->
+              View Reviews
+            </a>
+          </div>
+          <div class="col-md-1">
+          </div>
+        </div>
         <!-- Related Projects Row -->
         <div class="row">
 

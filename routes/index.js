@@ -23,4 +23,6 @@ module.exports = function(app){
     app.use('/user', require('./user'));
     app.use('/posts', require('./posts'));
     app.use('/logout', require('./logout'));
+    app.use('/review', require('./review'));
+    app.use('/reviewhis', require('./reviewhis'));
 };

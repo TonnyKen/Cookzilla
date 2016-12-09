@@ -9,6 +9,8 @@ router.get('/', function (req, res) {
   var rid = req.query.rid;
   recipe_query = "SELECT RID,TITLE,DESCRIPTION, PHOTOS FROM RECIPE WHERE RID = " + "'" + rid + "'";
   tags_query = "SELECT T_ID, TNAME FROM TAG NATURAL JOIN (SELECT * FROM ABOUT WHERE RID = " +"'" + rid + "'" + ") AS A";
+  elements_query = "SELECT i_name, amount FROM CONTAINING WHERE RID = " +"'" + rid + "';";
+  belongs_query = "SELECT rid from POST where rid='"+rid+"';";
   pool.getConnection(function(err, connection) {
     connection.query(recipe_query, function(err, rows) {
       if(err)throw err;
@@ -17,12 +19,23 @@ router.get('/', function (req, res) {
       connection.query(tags_query, function(err, rows) {
         if(err)throw err;
         tags = rows;
-        if(!req.session.uid) {
-          res.render('detail',{Recipe:recipe, Tags:tags, userinfo:false});
-        }
-        else {
-          res.render('detail',{Recipe:recipe, Tags:tags, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
-        }
+        connection.query(elements_query, function(err, rows) {
+          if(err)throw err;
+          elements = rows;
+          connection.query(belongs_query, function(err, rows) {
+            if(err)throw err;
+            console.log(rows);
+            if(!req.session.uid) {
+              res.render('detail',{Recipe:recipe, Tags:tags, elements:elements, userinfo:false, review:false});
+            }
+            else if (rows[0].user_name === req.session.uid){
+              res.render('detail',{Recipe:recipe, Tags:tags, elements:elements, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name,review:false});
+            }
+            else {
+              res.render('detail',{Recipe:recipe, Tags:tags, elements:elements, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name,review:true});
+            }
+          });
+        });
       });
     });
     connection.release();

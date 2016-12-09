@@ -24,7 +24,7 @@ router.get('/', function (req, res) {
 
 
 router.get('/meetings', function (req, res) {
-  console.log('Get query',req.query);
+  console.log('Now groups/meetings, Get query',req.query);
   var gname = req.query.group;
   var meeting = req.query.meeting;
   search_query = "SELECT * FROM MEETING WHERE MNAME ="+ "'" + meeting + "';";
