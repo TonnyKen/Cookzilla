@@ -17,7 +17,12 @@ router.get('/', function (req, res) {
       connection.query(tags_query, function(err, rows) {
         if(err)throw err;
         tags = rows;
-        res.render('detail',{Recipe:recipe, Tags:tags});
+        if(!req.session.uid) {
+          res.render('detail',{Recipe:recipe, Tags:tags, userinfo:false});
+        }
+        else {
+          res.render('detail',{Recipe:recipe, Tags:tags, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+        }
       });
     });
     connection.release();

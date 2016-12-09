@@ -61,7 +61,7 @@ $(document).ready(function() {
         type: "POST",
         contentType: "application/json",
         data : JSON.stringify({ title:title, description:desc, pictures:src, tags:tag_res, elements:element_res, quantities:quantities, mgs:mgs}),
-        url:"/post",
+        url:"/posts",
         async:false,
         success: function(data) {
           window.location.href = data.redirect;

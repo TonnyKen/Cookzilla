@@ -1,13 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var pool = require('../config/default').pool;
+var checkLogin = require('../middlewares/check').checkLogin;
 
-router.get('/', function (req, res) {
-  res.render('postpage');
+router.get('/', checkLogin, function (req, res) {
+  console.log('Now in ./posts get');
+  res.render('postpage',{userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
 });
 
 router.post('/', function (req, res) {
-  console.log(req.body);
+  console.log('Now in ./posts, post',req.body);
   var title = req.body.title,
     description = req.body.description,
     elements = req.body.elements,

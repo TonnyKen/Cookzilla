@@ -16,19 +16,13 @@ router.get('/', function (req, res) {
         if(err)throw err;
         var recipes = rows;
         if(req.session.uid === 'undefined' ||!req.session.uid) {
-          var userinfo = null;
           console.log('Not login in now');
-          res.render('main',{all_tags:tags, all_recipes:recipes, userinfo:userinfo});
+          res.render('main',{all_tags:tags, all_recipes:recipes, userinfo:false});
         }
         else {
-          console.log(req.session.uid);
-          user_query = "SELECT PROFILE,LOGIN_NAME,NICK_NAME FROM USER WHERE USER_NAME='"+req.session.uid +"';";
-          connection.query(user_query, function(err, rows) {
-            if(err)throw err;
-            console.log('Already logined',rows);
-            var userinfo = rows;
-            res.render('main',{all_tags:tags, all_recipes:recipes, userinfo:userinfo});
-          });
+          console.log('Already logined');
+          res.render('main',{all_tags:tags, all_recipes:recipes, userinfo:true,uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+
         }
       });
       connection.release();

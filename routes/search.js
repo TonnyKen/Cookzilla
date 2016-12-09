@@ -2,37 +2,24 @@ var express = require('express');
 var router = express.Router();
 var pool = require('../config/default').pool;
 
-// router.get('/', function (req, res) {
-//   res.render('signup');
-// });
-
 router.post('/', function (req, res) {
+    console.log('Now in ./search post page, keyword',req.body.search_value);
     if (typeof req.body.search_value !== 'undefined') {
-        search_query = 'select password from User where login_name = ' + '"' + req.body.search_value + '"';
+        keyword = req.body.search_value;
+        search_query = 'SELECT DISTINCT RID, TITLE FROM RECIPE NATURAL JOIN ABOUT NATURAL JOIN TAG WHERE TITLE LIKE "%fried%" OR DESCRIPTION LIKE "%' + keyword + '%" OR TNAME LIKE "%'+ keyword + '%";';
         pool.getConnection(function(err, connection) {
-          // Use the connection
-          console.log(search_query);
           connection.query(search_query, function(err, rows) {
-            console.log(JSON.stringify(rows));
-            res.send({redirect:'/main'});
-            // And done with the connection.
+            if(err)throw err;
+            if(!req.session.uid) {
+              res.render('search_result',{results:rows, keyword:'Search results', value:keyword, userinfo:false});
+            }
+            else {
+              res.render('search_result',{results:rows, keyword:'Search results', value:keyword, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+            }
           connection.release();
           });
         });
     }
-    // else if (typeof req.body.rid !== 'undefined'){
-    //     search_query = "SELECT TITLE,DESCRIPTION, PHOTOS FROM RECIPE WHERE RID = " +"'" + req.body.rid + "'";
-    //     pool.getConnection(function(err, connection) {
-    //       // Use the connection
-    //       console.log(search_query);
-    //       connection.query(search_query, function(err, rows) {
-    //         console.log(JSON.stringify(rows));
-    //         // And done with the connection.
-    //       connection.release();
-    //       });
-    //     });
-    // }
-
 });
 
 module.exports = router;

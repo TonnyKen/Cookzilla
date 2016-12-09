@@ -57,7 +57,7 @@
                         <a href="/meetings">Meetings</a>
                     </li>
                     <li>
-                        <a href="/post">Post</a>
+                        <a href="/posts">Post Recipe</a>
                     </li>
                     <!-- <li>
                         <a href="#">Contact</a>
@@ -82,7 +82,7 @@
                   <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                           <span class="glyphicon glyphicon-user"></span> 
-                          <strong><%=userinfo[0].NICK_NAME%></strong>
+                          <strong><%=nick_name%></strong>
                           <span class="glyphicon glyphicon-chevron-down"></span>
                       </a>
                       <ul class="dropdown-menu">
@@ -95,10 +95,10 @@
                                           </p>
                                       </div>
                                       <div class="col-lg-8">
-                                          <p class="text-left"><strong><%=userinfo[0].NICK_NAME%></strong></p>
-                                          <p class="text-left small"><%=userinfo[0].LOGIN_NAME%></p>
+                                          <p class="text-left"><strong><%=nick_name%></strong></p>
+                                          <p class="text-left small"><%=login_name%></p>
                                           <p class="text-left">
-                                              <a href="#" class="btn btn-primary btn-block btn-sm">Profile</a>
+                                              <a href="/user" class="btn btn-primary btn-block btn-sm">Profile</a>
                                           </p>
                                       </div>
                                   </div>

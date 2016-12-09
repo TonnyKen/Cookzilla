@@ -21,6 +21,6 @@ module.exports = function(app){
     app.use('/meetings', require('./meetings'));
     app.use('/tags', require('./tags'));
     app.use('/user', require('./user'));
-    app.use('/post', require('./post'));
+    app.use('/posts', require('./posts'));
     app.use('/logout', require('./logout'));
 };
