@@ -3,7 +3,7 @@ var router = express.Router();
 var pool = require('../config/default').pool;
 
 router.get('/', function (req, res) {
-  console.log('Get query',req.query);
+  console.log('Now in ./meeting, Get query',req.query);
   //res.render('search_result');
   var name = req.query.gname;
   search_query = "SELECT MID, MNAME, MLOCATION, MTIME, LASTTIME FROM MEETING NATURAL JOIN (ORGANIZE NATURAL JOIN (SELECT * FROM GROUPS WHERE GNAME = "+ "'" + name + "'" +") AS G);";
@@ -16,7 +16,7 @@ router.get('/', function (req, res) {
       }
       else {
         res.render('meetings',{meetings:rows, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
-      }      
+      }
       // And done with the connection.
     connection.release();
     });

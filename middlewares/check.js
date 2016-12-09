@@ -3,6 +3,7 @@ module.exports = {
     if (!req.session.uid) {
       console.log('Not log in yet');
       return res.redirect('/signup');
+      console.log('Not log in yet2');
     }
     next();
   },
@@ -10,7 +11,7 @@ module.exports = {
   checkNotLogin: function checkNotLogin(req, res, next) {
     if (req.session.uid) {
       console.log('have already logged in');
-      //return res.redirect('back');
+      return res.redirect('back');
     }
     next();
   }

@@ -1,0 +1,53 @@
+<%- include('./header') %>
+<link href="css/comment.css" rel="stylesheet">
+<div class="container">
+
+<h1>Comment Here<%=rid%></h1>
+
+<!-- wrap -->
+<div id="wrap">
+  <div id="main">
+  <div class="row">
+  <div class="col-md-5">
+  <h3 class="heading">Comments and Responses</h3>
+  </div>
+  <div class="col-md-7">
+  <div id="upper_blank"></div>
+  </div>
+  </div>
+  </div>
+
+  <!-- Form start -->
+
+  <div id='form'>
+  <div class="row">
+  <div class="col-md-12">
+
+  <form action="/comment" method="POST" id="commentform">
+
+  <div id="comment-name" class="form-row">
+  <input type = "text" placeholder = "title (required)" name = "title"  id = "name" required="">
+  </div>
+  <div id="comment-email" class="form-row">
+  <input type = "text" placeholder = "Review (will not be published) (required)" name = "demail"  id = "email" required="">
+  </div>
+
+  <div id="comment-message" class="form-row">
+  <textarea name = "comment" placeholder = "Suggestion" id = "comment" ></textarea>
+  </div>
+  <a href="#"><input type="submit" name="dsubmit" id="commentSubmit" value="Submit Comment"></a>
+  </form>
+
+  </div>
+  </div>
+  </div>
+</div>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<%- include('./footer') %>
