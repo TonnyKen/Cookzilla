@@ -28,11 +28,11 @@ router.get('/', function (req, res) {
             if(!req.session.uid) {
               res.render('detail',{Recipe:recipe, Tags:tags, elements:elements, userinfo:false, review:false});
             }
-            else if (rows[0].user_name === req.session.uid){
-              res.render('detail',{Recipe:recipe, Tags:tags, elements:elements, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name,review:false});
+            else if (rows.length>0 && rows[0].user_name === req.session.uid){
+              res.render('detail',{Recipe:recipe, Tags:tags, elements:elements, userinfo:true, uid:req.session.uid, nick_name:req.session.nick_name,login_name:req.session.login_name,review:false});
             }
             else {
-              res.render('detail',{Recipe:recipe, Tags:tags, elements:elements, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name,review:true});
+              res.render('detail',{Recipe:recipe, Tags:tags, elements:elements, userinfo:true, uid:req.session.uid, nick_name:req.session.nick_name,login_name:req.session.login_name,review:true});
             }
           });
         });

@@ -5,7 +5,7 @@ var checkLogin = require('../middlewares/check').checkLogin;
 
 router.get('/', checkLogin, function (req, res) {
   console.log('Now in ./posts get');
-  res.render('postpage',{userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+  res.render('postpage',{userinfo:true, uid:req.session.uid,nick_name:req.session.nick_name,login_name:req.session.login_name});
 });
 
 router.post('/', function (req, res) {

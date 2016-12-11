@@ -26,4 +26,6 @@ module.exports = function(app){
     app.use('/reviewhis', require('./reviewhis'));
     app.use('/comment', require('./comment'));
     app.use('/meeting_detail', require('./meeting_detail'));
-};
+    app.use('/joingroup', require('./joingroup'));
+    app.use('/leavegroup', require('./leavegroup'));
+  };
