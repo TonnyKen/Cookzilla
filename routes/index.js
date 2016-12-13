@@ -28,4 +28,8 @@ module.exports = function(app){
     app.use('/meeting_detail', require('./meeting_detail'));
     app.use('/joingroup', require('./joingroup'));
     app.use('/leavegroup', require('./leavegroup'));
+    app.use('/creategroup', require('./creategroup'));
+    app.use('/createmeeting', require('./createmeeting'));
+    app.use('/registerm', require('./registerm'));
+    app.use('/cancelm', require('./cancelm'));
   };

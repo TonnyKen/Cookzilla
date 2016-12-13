@@ -11,11 +11,6 @@
 							<div class="widget blank no-padding">
 								<div class="panel panel-default work-progress-table">
                   <!-- Default panel contents -->
-
-                    <div class="dropdown rounded">
-                      <button class="btn btn-danger pull-right"  data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon"></span>History</button>
-                    </div>
-
 									  <!-- Table -->
 									<table id="mytable" class="table">
 										<thead>
@@ -32,12 +27,12 @@
                           <li>
                               <tr>
 
-                              <td><a href="/meeting_detail?meeting=<%= meetings[i].MNAME %>"><%= meetings[i].MNAME %></a></td>
-                            <td><a href="/group_detail?gname=<%= meetings[i].GNAME %>"><%= meetings[i].GNAME %></a></td>
+                              <td><a href="/meeting_detail?gid=<%= meetings[i].GID %>&mid=<%= meetings[i].MID %>"><%= meetings[i].MNAME %></a></td>
+                            <td><a href="/group_detail?gid=<%= meetings[i].GID %>"><%= meetings[i].GNAME %></a></td>
                               <td><%= meetings[i].MLOCATION %></td>
                               <td><%= meetings[i].MTIME %></td>
                               <td><%= meetings[i].LASTTIME %></td>
-                              <td><a href="/group_detail?gname=<%= meetings[i].GNAME %>" style="text-decoration: none"><span class="label label-info">Register</span></a></td>
+                              <td><a href="/group_detail?gid=<%= meetings[i].GID %>" style="text-decoration: none"><span class="label label-info">Register</span></a></td>
                               </tr>
 
                           </li>

@@ -70,7 +70,7 @@
                 <% for(var i=0; i < all_recipes.length; i++) { %>
                   <div class="col-sm-4 col-lg-4 col-md-4">
                       <div class="thumbnail recipe">
-                          <img src="<%= all_recipes[i].PHOTOS %>" alt="">
+                          <img src="<%= all_recipes[i].PHOTOS %>" alt="" style="width:100%;max-width:190px;height:100%;max-height:130px;">
                           <div class="caption">
                               <!-- <h4 class="pull-right">$24.99</h4> -->
                               <h4><a href="/detail?rid=<%= all_recipes[i].RID %>"><%= all_recipes[i].TITLE %></a>

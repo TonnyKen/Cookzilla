@@ -47,8 +47,8 @@
                 <a class="navbar-brand" href="/">Cookzilla</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <% if (userinfo) { %>
+            <div class="collapse navbar-collapse col-md-4" id="bs-example-navbar-collapse-1">
+
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="/groups">Groups</a>
@@ -56,18 +56,15 @@
                     <li>
                         <a href="/meetings">Meetings</a>
                     </li>
+                    <% if (userinfo) { %>
                     <li>
                         <a href="/posts">Post Recipe</a>
                     </li>
-                    <!-- <li>
-                        <a href="#">Contact</a>
-                    </li> -->
+                    <% } %>
                 </ul>
-              <% } else{ %>
-                <ul class="nav navbar-nav">
-                </ul>
-              <% } %>
-                <div class="collapse navbar-collapse col-sm-3 col-md-3"  style="float:right">
+              </div>
+
+                <div class="collapse navbar-collapse col-sm-4 col-md-4">
                     <form class="navbar-form" method="post" role="search" action="/search">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="search_value" required>
@@ -76,8 +73,12 @@
                         </div>
                     </div>
                     </form>
+                </div>
 <!-- dropdown -->
-            <% if (userinfo) { %>
+
+
+              <div class="collapse navbar-collapse col-sm-2 col-md-2"  style="float:right">
+                <% if (userinfo) { %>
                 <ul class="nav navbar-nav navbar-right">
                   <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -119,14 +120,20 @@
                       </ul>
                   </li>
               </ul>
-           <% } else{ %>
+              <% } else{ %>
               <ul class="nav navbar-nav">
+                  <li>
+                      <a href="/signup">Login</a>
+                  </li>
               </ul>
-            <% } %>
-                </div>
+              <% } %>
             </div>
 
-            <!-- /.navbar-collapse -->
+
         </div>
+    </div>
+
+            <!-- /.navbar-collapse -->
+ </div>
         <!-- /.container -->
     </nav>

@@ -1,0 +1,87 @@
+<%- include('./header') %>
+<link type="text/css" href="css/bootstrap-timepicker.min.css" />
+<script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <form class="form-horizontal" action="/createmeeting" method="POST">
+                    <fieldset>
+                        <legend class="text-center header">Create Meeting for group </legend>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-cutlery bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="mname" name="mname" type="text" placeholder="Input Meeting name" class="form-control" required="required">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            <div class="col-md-8">
+                                <textarea class="form-control" id="location" name="location" placeholder="Enter location"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="inputKey" class="col-md-1 control-label">Year</label>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="year" placeholder="Year">
+                                    </div>
+                                    <label for="inputValue" class="col-md-1 control-label">Month</label>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="month" placeholder="Month">
+                                    </div>
+                                    <label for="inputValue" class="col-md-1 control-label">Day</label>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" id="day" placeholder="Day">
+                                    </div>
+
+                                </div>
+                                <div class="form-group row">
+                                  <label for="inputValue" class="col-md-1 control-label">Time</label>
+                                  <div class="col-md-4 input-append bootstrap-timepicker-component">
+                                      <input type="text" id = "realtime" class="timepicker input-small">
+                                  </div>
+                                  <label for="inputValue" class="col-md-1 control-label">Last</label>
+                                  <div class="col-md-2">
+                                      <input type="text" class="form-control" id="lasttime" placeholder="hour">
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="button" id="createmeeting" class="btn btn-primary btn-lg">Submit</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+  $('.timepicker').timepicker({
+    template : 'dropdown',
+    showInputs: false,
+    showSeconds: false,
+    showMeridian:false
+  });
+</script>
+<script src="js/upload.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/main.js"></script>
+<script src="js/createmeeting.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<%- include('./footer') %>
