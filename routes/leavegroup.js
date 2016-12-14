@@ -17,6 +17,7 @@ router.get('/', checkLogin, function (req, res) {
         console.log('Could delete here, starting deleting');
         connection.query(delete_belongs_query, function(err, rows) {
           if (err)throw err;
+          req.flash('success', 'leave group success');
           console.log('leave group success');
           connection.query(delete_regist_query, function(err, rows) {
             if (err)throw err;

@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+        <img src="http://a.hiphotos.baidu.com/image/h%3D200/sign=c8bf10e9aeefce1bf52bcfca9f51f3e8/bba1cd11728b4710e142aed3cacec3fdfc0323bb.jpg" class="img-responsive" style="width:100%;max-width:355px;height:100%;max-height:355px;">
       </div>
       <div class="col-md-6">
         <h1><%=nick_name%></h1>
@@ -14,6 +14,7 @@
      </div>
    </div>
  </div>
+ <br><br>
  <div class="section">
    <div class="container">
      <div class="row">
@@ -22,39 +23,22 @@
          <p class="text-center">counts:</p>
        </div>
      </div>
-     <div class="row">
-       <div class="col-md-2">
-         <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle img-responsive">
-       </div>
-       <div class="col-md-4">
-         <h3 class="text-left">John Doe</h3>
-         <p class="text-left">Lorem ipsum dolor sit amet, adipiscing elit Aenean commodo ligula eget.</p>
-       </div>
-       <div class="col-md-2">
-         <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle img-responsive">
-       </div><div class="col-md-4">
-         <h3 class="text-left">John Doe</h3>
-         <p class="text-left">Lorem ipsum dolor sit amet, adipiscing elit Aenean commodo ligula eget.</p>
-       </div>
-     </div>
 
      <div class="row">
-        <div class="col-md-2">
-          <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle img-responsive">
-        </div>
-        <div class="col-md-4">
-          <h3 class="text-left">John Doe</h3>
-          <p class="text-left">Lorem ipsum dolor sit amet, adipiscing elit Aenean commodo ligula eget.</p>
-        </div><div class="col-md-2">
-          <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle img-responsive">
-        </div>
-        <div class="col-md-4 text-center">
-          <h3 class="text-left">John Doe</h3>
-          <p class="text-left">Lorem ipsum dolor sit amet, adipiscing elit Aenean commodo ligula eget.</p>
-        </div>
-      </div>
+       <% for(var i=0; i < recipes.length; i++) { %>
+
+       <div class="col-md-2">
+         <img src="<%= recipes[i].photos %>" class="img-responsive" style="width:100%;max-width:200px;height:100%;max-height:100px;">
+       </div>
+       <div class="col-md-3">
+         <a href="/detail?rid=<%= recipes[i].rid %>"><h3 class="text-left"><%= recipes[i].title %></h3></a>
+         <p class="text-left"><%= recipes[i].description %></p>
+       </div>
+       <% } %>
+     </div>
     </div>
   </div>
+  <br><br>
   <div class="section">
     <div class="container">
       <div class="row">
@@ -64,30 +48,19 @@
       </div>
     </div>
   </div>
+  <br><br>
   <div class="section">
     <div class="container">
       <div class="row">
+        <% for(var i=0; i < groups.length; i++) { %>
         <div class="col-md-3">
-          <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-          <h2>A title</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam, quis nostrud</p>
+          <a href="/group_detail?gid=<%= groups[i].gid %>"><h3><%= groups[i].gname %></h3></a>
+          <p><%= groups[i].description %></p>
         </div>
-
-        <div class="col-md-3">
-           <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-           <h2>A title</h2> <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam, quis nostrud</p>
-         </div>
-         <div class="col-md-3">
-           <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive img-rounded">
-           <h2>A title</h2>
-           <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam, quis nostrud</p>
-         </div>
-         <div class="col-md-3">
-            <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-            <h2>A title</h2> <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam, quis nostrud</p>
-          </div>
+        <% } %>
         </div>
       </div>
     </div>
+    <!-- <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive"> -->
   </body>
   </html>

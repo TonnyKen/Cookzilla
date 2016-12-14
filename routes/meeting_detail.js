@@ -10,6 +10,7 @@ router.get('/', function (req, res) {
   //var query = 'SELECT * FROM REPORT NATURAL JOIN (SELECT * FROM MEETING WHERE MNAME = "' + mname + '") AS M';
   var group_query = 'SELECT GNAME FROM GROUPS WHERE GID = "' + gid + '"';
   var meeting_query = 'SELECT * FROM MEETING WHERE MID = "' + mid + '"';
+
   if (!req.session.uid){
     var check_register_query = 'SELECT * FROM Regist WHERE MID = "' + mid + '" and user_name = -1' ;
     var belongs_query = 'SELECT * FROM BELONGS WHERE GID = -1;';
@@ -29,24 +30,39 @@ router.get('/', function (req, res) {
         var number_of_reports = rows.length;
         var today = new Date();
         if (reports.mtime < today){
-          connection.query(belongs_query, function(err, rows) {
+          if (!req.session.uid){
+            var check_review_query = 'select * from regist where user_name=-1 and mid=' + mid+';';
+          }
+          else{
+            var check_review_query = 'select * from regist where user_name=' + req.session.uid + ' and mid=' + mid+';';
+          }
+          connection.query(check_review_query, function(err, rows) {
             if (err)throw err;
-            if(rows.length > 0) {
-              var canrg = false;
-              var cancancel = false;
-              var seereport = true;
-            }
-            else {
-              var canrg = false;
-              var cancancel = false;
-              var seereport = false;
-            }
-            if(!req.session.uid){
-              res.render('meeting_detail',{canrg:canrg, cancancel:cancancel, seereport:seereport, gname:gname, reports:reports, number_of_reports:number_of_reports, userinfo:false});
+            if(rows.length > 0){
+              var canreview = true;
             }
             else{
-              res.render('meeting_detail',{canrg:canrg, cancancel:cancancel, seereport:seereport, gname:gname, reports:reports, number_of_reports:number_of_reports, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+              var canreview = false;
             }
+            connection.query(belongs_query, function(err, rows) {
+              if (err)throw err;
+              if(rows.length > 0) {
+                var canrg = false;
+                var cancancel = false;
+                var seereport = true;
+              }
+              else {
+                var canrg = false;
+                var cancancel = false;
+                var seereport = false;
+              }
+              if(!req.session.uid){
+                res.render('meeting_detail',{canreview:canreview, canrg:canrg, cancancel:cancancel, seereport:seereport, gname:gname, reports:reports, number_of_reports:number_of_reports, userinfo:false});
+              }
+              else{
+                res.render('meeting_detail',{canreview:canreview, canrg:canrg, cancancel:cancancel, seereport:seereport, gname:gname, reports:reports, number_of_reports:number_of_reports, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+              }
+            });
           });
         }
         else {
@@ -63,10 +79,10 @@ router.get('/', function (req, res) {
               var seereport = false;
             }
             if(!req.session.uid){
-              res.render('meeting_detail',{canrg:canrg, cancancel:cancancel, seereport:seereport, gname:gname, reports:reports, number_of_reports:number_of_reports, userinfo:false});
+              res.render('meeting_detail',{canreview:false, canrg:canrg, cancancel:cancancel, seereport:seereport, gname:gname, reports:reports, number_of_reports:number_of_reports, userinfo:false});
             }
             else{
-              res.render('meeting_detail',{canrg:canrg, cancancel:cancancel, seereport:seereport, gname:gname, reports:reports, number_of_reports:number_of_reports, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+              res.render('meeting_detail',{canreview:false, canrg:canrg, cancancel:cancancel, seereport:seereport, gname:gname, reports:reports, number_of_reports:number_of_reports, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
             }
           });
         }

@@ -1,9 +1,3 @@
-/**
- * Oscuro: #283035
- * Azul: #03658c
- * Detalle: #c7cacb
- * Fondo: #dee1e3
- ----------------------------------*/
  * {
      margin: 0;
  	padding: 0;
@@ -26,9 +20,7 @@ body {
 	background: #dee1e3;
 }
 
-/** ====================
- * Lista de Comentarios
- =======================*/
+
 .comments-container {
 	margin: 60px auto 15px;
 	width: 768px;
@@ -108,9 +100,8 @@ body {
 	clear: both;
 	margin-top: 15px;
 }
-/**
- * Avatar
- ---------------------------*/
+
+
 .comments-list .comment-avatar {
 	width: 65px;
 	height: 65px;
@@ -144,9 +135,8 @@ body {
 	display: block;
 	clear: both;
 }
-/**
- * Caja del Comentario
- ---------------------------*/
+
+
 .comments-list .comment-box {
 	width: 680px;
 	float: right;
@@ -248,9 +238,7 @@ body {
 	border-radius: 3px;
 }
 
-/** =====================
- * Responsive
- ========================*/
+
 @media only screen and (max-width: 766px) {
 	.comments-container {
 		width: 480px;

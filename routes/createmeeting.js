@@ -22,18 +22,19 @@ router.post('/', checkLogin, function (req, res) {
     realtime = req.body.time,
     gid = req.session.gid,
     lasttime = req.body.lasttime;
-  var insert_meeting = 'INSERT INTO MEETING(MNAME, MLOCATION, MTIME, LASTTIME) VALUES ("'+ mname+ '","' + location + '","' + realtime + '","' + lasttime +'");';
 
   pool.getConnection(function(err, connection) {
+    var insert_meeting = 'INSERT INTO MEETING(MNAME, MLOCATION, MTIME, LASTTIME) VALUES ('+ connection.escape(mname)+ ',' + connection.escape(location) + ',' + connection.escape(realtime) + ',' + connection.escape(lasttime) +');';
     connection.query(insert_meeting, function(err, rows) {
       if (err)throw err;
       var mid = rows.insertId;
-      var insert_organize = 'INSERT INTO ORGANIZE(GID, MID) VALUES ("' +gid+ '","' + mid + '");';
+      var insert_organize = 'INSERT INTO ORGANIZE(GID, MID) VALUES (' +connection.escape(gid)+ ',' + connection.escape(mid) + ');';
       connection.query(insert_organize, function(err, rows) {
         if (err)throw err;
         res.send({redirect:'/meeting_detail?gid='+gid+'&mid=' + mid});
       });
     });
+    connection.release();
   });
 });
 

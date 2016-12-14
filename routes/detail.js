@@ -7,21 +7,22 @@ router.get('/', function (req, res) {
   console.log('Detail Get');
   console.log(req.query);
   var rid = req.query.rid;
-  recipe_query = "SELECT RID,TITLE,DESCRIPTION, PHOTOS FROM RECIPE WHERE RID = " + "'" + rid + "'";
-  tags_query = "SELECT T_ID, TNAME FROM TAG NATURAL JOIN (SELECT * FROM ABOUT WHERE RID = " +"'" + rid + "'" + ") AS A";
-  elements_query = "SELECT i_name, amount FROM CONTAINING WHERE RID = " +"'" + rid + "';";
-  belongs_query = "SELECT rid from POST where rid='"+rid+"';";
+
   pool.getConnection(function(err, connection) {
+    var recipe_query = "SELECT RID,TITLE,DESCRIPTION, PHOTOS FROM RECIPE WHERE RID = " + connection.escape(rid);
     connection.query(recipe_query, function(err, rows) {
       if(err)throw err;
       console.log(rows);
       recipe = rows[0];
+      var tags_query = "SELECT T_ID, TNAME FROM TAG NATURAL JOIN (SELECT * FROM ABOUT WHERE RID = "+ connection.escape(rid) + ") AS A";
       connection.query(tags_query, function(err, rows) {
         if(err)throw err;
         tags = rows;
+        var elements_query = "SELECT i_name, amount FROM CONTAINING WHERE RID = " + connection.escape(rid);
         connection.query(elements_query, function(err, rows) {
           if(err)throw err;
           elements = rows;
+          var belongs_query = "SELECT rid from POST where rid=" + connection.escape(rid);
           connection.query(belongs_query, function(err, rows) {
             if(err)throw err;
             console.log(rows);

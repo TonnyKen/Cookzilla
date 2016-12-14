@@ -32,4 +32,12 @@ module.exports = function(app){
     app.use('/createmeeting', require('./createmeeting'));
     app.use('/registerm', require('./registerm'));
     app.use('/cancelm', require('./cancelm'));
+    app.use('/reviewmeeting', require('./reviewmeeting'));
+    app.use('/seereport', require('./seereport'));
+    app.use(function (req, res) {
+      if (!res.headersSent) {
+        res.render('404');
+      }
+    });
+
   };

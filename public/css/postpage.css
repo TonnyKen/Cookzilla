@@ -1,0 +1,9 @@
+.elems-inputs,.tags-inputs,.quantity {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 30%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+}

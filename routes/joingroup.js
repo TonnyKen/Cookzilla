@@ -7,9 +7,9 @@ router.get('/', checkLogin, function (req, res) {
   console.log('Now in joingroup, insert into gid:', req.query.gid);
   var gid = req.query.gid;
   var uid = req.session.uid;
-  check_query = "SELECT * FROM BELONGS WHERE gid = " + "'" + gid + "' and user_name = " + "'" + uid + "';";
-  insert_belongs_query = "INSERT INTO BELONGS (user_name, gid) VALUES (" + "'" + uid + "'," + "'" + gid + "'" + ");";
+  
   pool.getConnection(function(err, connection) {
+    var check_query = "SELECT * FROM BELONGS WHERE gid = " + connection.escape(gid) + " and user_name = " + connection.escape(uid);
     connection.query(check_query, function(err, rows) {
       if (err)throw err;
       if(rows.length > 0){
@@ -17,8 +17,10 @@ router.get('/', checkLogin, function (req, res) {
         return res.redirect('back');
       }
       else {
+        var insert_belongs_query = "INSERT INTO BELONGS (user_name, gid) VALUES (" + connection.escape(uid) + "," + connection.escape(gid) + ");";
         connection.query(insert_belongs_query, function(err, rows) {
           if (err)throw err;
+          req.flash('success', 'Join group success, enjoy it');
           console.log('Insert success');
           return res.redirect('back');
         });

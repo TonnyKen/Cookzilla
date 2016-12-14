@@ -17,6 +17,24 @@
 
       <div class="tab-content">
         <div id="signup">
+          <div class="ui grid">
+            <div class="four wide column"></div>
+            <div class="eight wide column">
+
+            <% if (success) { %>
+              <div class="ui success message">
+                <p style="color:white;text-align:center"><%= success %></p>
+              </div>
+            <% } %>
+
+            <% if (error) { %>
+              <div class="ui error message">
+                <p style="color:white;text-align:center"><%= error %></p>
+              </div>
+            <% } %>
+
+            </div>
+          </div>
           <h1>Sign Up for Cookzilla</h1>
           <form action="/signup" method="post">
             <div class="field-wrap">

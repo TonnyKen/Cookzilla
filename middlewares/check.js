@@ -1,16 +1,15 @@
 module.exports = {
   checkLogin: function checkLogin(req, res, next) {
     if (!req.session.uid) {
-      console.log('Not log in yet');
+      req.flash('err', 'Not log in yet');
       return res.redirect('/signup');
-      console.log('Not log in yet2');
     }
     next();
   },
 
   checkNotLogin: function checkNotLogin(req, res, next) {
     if (req.session.uid) {
-      console.log('have already logged in');
+      req.flash('err','already logged in');
       return res.redirect('back');
     }
     next();

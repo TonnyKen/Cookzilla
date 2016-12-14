@@ -15,7 +15,8 @@
             <p>location: <%= reports.mlocation %></p>
             <%if (canrg) { %> <a class="btn btn-primary btn-lg" href="registerm?mid=<%= reports.mid %>">RSVP NOW</a> <% } %>
             <%if (cancancel) { %> <a class="btn btn-primary btn-lg" href="cancelm?mid=<%= reports.mid %>">Cancel meeting</a> <% } %>
-            <%if (seereport) { %> <a class="btn btn-primary btn-lg" href="">See reports</a> <% } %>
+            <%if (canreview) { %> <a class="btn btn-primary btn-lg" href="/reviewmeeting?mid=<%= reports.mid %>">Review meeting</a> <% } %>
+            <%if (seereport) { %> <a class="btn btn-primary btn-lg" href="/seereport?mid=<%= reports.mid %>">See reports</a> <% } %>
         </div>
         <!-- /.col-md-4 -->
     </div>

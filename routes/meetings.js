@@ -11,7 +11,6 @@ router.get('/', checkLogin, function (req, res) {
   search_query = 'SELECT G.GID, G.GNAME, MID, MNAME, MLOCATION, MTIME, LASTTIME FROM MEETING NATURAL JOIN ORGANIZE NATURAL JOIN((SELECT GID,GNAME FROM GROUPS NATURAL JOIN (BELONGS NATURAL JOIN (SELECT * FROM USER WHERE USER_NAME = '+uid+') AS U)) AS G) ORDER BY MTIME DESC';
   pool.getConnection(function(err, connection) {
     connection.query(search_query, function(err, rows) {
-      console.log(rows);
       if (err)throw err;
       if(!req.session.uid) {
         res.render('meetings',{meetings:rows, userinfo:false});

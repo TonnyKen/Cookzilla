@@ -25,17 +25,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(cookieParser('keyboard cat'));
 //app.use(session({ key: 'sid', cookie: { maxAge: 60000 }}));
-//app.use(cookieParser());
+app.use(cookieParser());
 
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(flash());
 app.use(session({
   cookieName: 'session',
   secret: 'random_string_goes_here',
   duration: 30 * 60 * 1000,
   activeDuration: 5 * 60 * 1000,
 }));
+app.use(flash());
+app.use(express.csrf());
+
+app.use(function (req, res, next) {
+  res.locals.user = req.session.user;
+  res.locals.success = req.flash('success').toString();
+  res.locals.error = req.flash('error').toString();
+  next();
+});
 
 routes(app);
 

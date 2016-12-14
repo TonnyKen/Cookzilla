@@ -25,7 +25,7 @@ router.post('/', function (req, res) {
       var addr = '/detail?rid='+rid;
       tags.forEach(function(tag){
         tag_query = "SELECT T_ID FROM TAG WHERE TNAME = '" + tag +"';";;
-        connection.query(tag_query, function(err, result) {
+        connection.query(tag_query, function  (err, result) {
           if (err)throw err;
           console.log('search tag here',result);
           if(result.length > 0){
@@ -74,10 +74,8 @@ router.post('/', function (req, res) {
         });
       });
       //res.render('meetings',{meetings:rows});
-    console.log('redirect how many times?');
     res.send({redirect:addr});
     });
-    console.log('redirect how many times? HERE?');
     connection.release();
   });
 });
