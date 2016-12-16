@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
   //res.render('search_result');
   var check_query = "SELECT * FROM BELONGS WHERE gid = " + "'" + gid + "' and user_name = " + "'" + uid + "';";
   var check_leader_query = "SELECT LEADER FROM GROUPS WHERE gid = " + "'" + gid + "';";
-  var member_query = 'SELECT GNAME, USER_NAME, PROFILE, LOGIN_NAME FROM BELONGS NATURAL JOIN (SELECT * FROM GROUPS WHERE GID = '+ "'" + gid + "'" +') AS G NATURAL JOIN USER;';
+  var member_query = 'SELECT GNAME, USER_NAME, PROFILE, LOGIN_NAME, description FROM BELONGS NATURAL JOIN (SELECT * FROM GROUPS WHERE GID = '+ "'" + gid + "'" +') AS G NATURAL JOIN USER;';
   var old_meeting_query = 'SELECT GNAME, MEETING.MID, MNAME, MLOCATION, MTIME FROM MEETING, ORGANIZE, (SELECT * FROM GROUPS WHERE GID = ' + "'" + gid + "'" + ') AS G WHERE MEETING.MID = ORGANIZE.MID AND ORGANIZE.GID = G.GID AND MTIME < now();';
   var new_meeting_query = 'SELECT GNAME, MEETING.MID, MNAME, MLOCATION, MTIME FROM MEETING, ORGANIZE, (SELECT * FROM GROUPS WHERE GID = ' + "'" + gid + "'" + ') AS G WHERE MEETING.MID = ORGANIZE.MID AND ORGANIZE.GID = G.GID AND MTIME > now();';
 
@@ -21,6 +21,7 @@ router.get('/', function (req, res) {
     connection.query(member_query, function(err, rows) {
       if (err)throw err;
       var gname = rows[0].GNAME;
+      var description = rows[0].description;
       var members = rows;
       var number_of_member = members.length;
       connection.query(old_meeting_query, function(err, rows) {
@@ -46,10 +47,10 @@ router.get('/', function (req, res) {
                   var createmeeting = false;
                 }
                 if(!req.session.uid) {
-                  res.render('groups_detail',{createmeeting:createmeeting, gid:gid,joinit:joinit, leaveit:leaveit, members:members, old_meetings:old_meetings,new_meetings:new_meetings, group:gname, number_of_old_meeting:number_of_old_meeting,number_of_new_meeting:number_of_new_meeting, number_of_member:number_of_member, userinfo:false});
+                  res.render('groups_detail',{description: description, createmeeting:createmeeting, gid:gid,joinit:joinit, leaveit:leaveit, members:members, old_meetings:old_meetings,new_meetings:new_meetings, group:gname, number_of_old_meeting:number_of_old_meeting,number_of_new_meeting:number_of_new_meeting, number_of_member:number_of_member, userinfo:false});
                 }
                 else {
-                  res.render('groups_detail',{createmeeting:createmeeting, gid:gid,joinit:joinit, leaveit:leaveit, members:members, old_meetings:old_meetings,new_meetings:new_meetings, group:gname, number_of_old_meeting:number_of_old_meeting,number_of_new_meeting:number_of_new_meeting, number_of_member:number_of_member, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+                  res.render('groups_detail',{description: description,createmeeting:createmeeting, gid:gid,joinit:joinit, leaveit:leaveit, members:members, old_meetings:old_meetings,new_meetings:new_meetings, group:gname, number_of_old_meeting:number_of_old_meeting,number_of_new_meeting:number_of_new_meeting, number_of_member:number_of_member, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
                 }
               });
             }
@@ -57,10 +58,10 @@ router.get('/', function (req, res) {
               var joinit = true;
               var leaveit = false;
               if(!req.session.uid) {
-                res.render('groups_detail',{createmeeting:false, gid:gid,joinit:joinit, leaveit:leaveit, members:members, old_meetings:old_meetings,new_meetings:new_meetings, group:gname, number_of_old_meeting:number_of_old_meeting,number_of_new_meeting:number_of_new_meeting, number_of_member:number_of_member, userinfo:false});
+                res.render('groups_detail',{description: description,createmeeting:false, gid:gid,joinit:joinit, leaveit:leaveit, members:members, old_meetings:old_meetings,new_meetings:new_meetings, group:gname, number_of_old_meeting:number_of_old_meeting,number_of_new_meeting:number_of_new_meeting, number_of_member:number_of_member, userinfo:false});
               }
               else {
-                res.render('groups_detail',{createmeeting:false, gid:gid,joinit:joinit, leaveit:leaveit, members:members, old_meetings:old_meetings,new_meetings:new_meetings, group:gname, number_of_old_meeting:number_of_old_meeting,number_of_new_meeting:number_of_new_meeting, number_of_member:number_of_member, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
+                res.render('groups_detail',{description: description,createmeeting:false, gid:gid,joinit:joinit, leaveit:leaveit, members:members, old_meetings:old_meetings,new_meetings:new_meetings, group:gname, number_of_old_meeting:number_of_old_meeting,number_of_new_meeting:number_of_new_meeting, number_of_member:number_of_member, userinfo:true, uid:req.session.user_name,nick_name:req.session.nick_name,login_name:req.session.login_name});
               }
             }
           });

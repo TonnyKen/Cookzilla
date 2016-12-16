@@ -16,7 +16,7 @@ router.get('/', checkLogin, function (req, res) {
     console.log('Get param rid:',rid);
     var uid = req.session.uid;
     pool.getConnection(function(err, connection) {
-      var check_query = "select user_name from POST where rid='" + connection.escape(rid) + "';";
+      var check_query = "select user_name from POST where rid=" + connection.escape(rid);
       connection.query(check_query, function(err, rows) {
         if (err)throw err;
         if (rows.length === 0 || rows[0].user_name === uid){

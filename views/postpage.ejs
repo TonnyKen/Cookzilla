@@ -52,13 +52,16 @@
                                 <textarea class="form-control" id="desc" name="description" placeholder="Enter description of your recipe" rows="7"></textarea>
                             </div>
                         </div>
-                        <section>
-                          <input type='file' onchange="readURL(this);" name="image_name"/><br/>
-                          <span id="previewPane">
-                          <img id="img_prev" src="#" alt="your image" name="image_src"/>
-                          <span id="x">[X]</span>
-                          </span>
-                        </section>
+                        <div class="form-group">
+                          <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            <section>
+                              <input type='file' onchange="readURL(this);" name="image_name"/><br/>
+                              <span id="previewPane">
+                              <img id="img_prev" src="#" alt="your image" name="image_src" style="display: none;"/>
+                              <span id="x"></span>
+                              </span>
+                            </section>
+                      </div>
                         <div class="form-group">
                             <div class="col-md-12 text-center">
                                 <button type="button" id="post_submit" class="btn btn-primary btn-lg">Submit</button>

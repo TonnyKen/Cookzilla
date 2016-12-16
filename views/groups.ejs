@@ -10,10 +10,10 @@
 							<div class="widget blank no-padding">
 								<div class="panel panel-default work-progress-table">
 									  <!-- Default panel contents -->
-									<div class="panel-heading">Muhammad Mohsin Irshad<i>UI/UX Designer & Developer (isometric.mohsin@gmail.com)</i>
+									<div class="panel-heading">
 										<div class="dropdown rounded">
 
-											<%if (userinfo) { %><button class="btn btn-danger pull-right"  data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-trash"></span> Create Group</button><% } %>
+											<%if (userinfo) { %><button class="btn btn-danger pull-right"  data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-plus"></span> Create Group</button><% } %>
 										</div>
 									</div>
 									  <!-- Table -->
@@ -42,9 +42,9 @@
                                   <% } else { %>
                                     <span class="label label-default"><%= groups[i].GNAME %></span>
                                   <% } %> -->
-                                  <div style="width: 60%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="red progress-bar">
-                                  <span>60%</span>
-                                   </div>
+                                  <!-- <div style="width: 60%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="red progress-bar">
+
+                                   </div> -->
                                 </div>
                               </td>
                               <td><a href="/group_detail?gid=<%= groups[i].GID %>" style="text-decoration: none"><span class="label label-info">Register</span></a></td>
@@ -64,8 +64,8 @@
       <div class="modal-dialog">
     <div class="modal-content">
           <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+        <h4 class="modal-title custom_align" id="Heading">Create group</h4>
       </div>
           <div class="modal-body">
 

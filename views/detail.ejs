@@ -1,97 +1,83 @@
 <%- include('./header') %>
     <!-- Page Content -->
-    <div class="container">
+<div class="container">
 
-        <!-- Portfolio Item Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header"><%= Recipe.TITLE %>
-                    <!-- <small>Item Subheading</small> -->
-                </h1>
-            </div>
+    <!-- Portfolio Item Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header"><%= Recipe.TITLE %>
+                <!-- <small>Item Subheading</small> -->
+            </h1>
         </div>
-        <!-- /.row -->
+    </div>
+    <!-- /.row -->
 
-        <!-- Portfolio Item Row -->
-        <div class="row">
+    <!-- Portfolio Item Row -->
+    <div class="row">
 
-            <div class="col-md-8">
-                <img class="img-responsive" src="<%= Recipe.PHOTOS %>" alt="">
-            </div>
-
-            <div class="col-md-4">
-                <h3><%= Recipe.TITLE %></h3>
-                <p><%= Recipe.DESCRIPTION %></p>
-                <h3>Element Details</h3>
-                <ul>
-                  <% for(var i=0; i < elements.length; i++) { %>
-                      <li><%= elements[i].i_name %> : <%= elements[i].amount %></li>
-                  <% } %>
-                </ul>
-                <h3>Related Tags</h3>
-                <% for(var i=0; i < Tags.length; i++) { %>
-                    <li>
-                        <a href='tags?tag=<%= Tags[i].TNAME %>'>
-                          <%if (i < 3) { %>
-                            <span class="label label-primary"><%= Tags[i].TNAME %></span>
-                          <% } else if (i < 6) { %>
-                            <span class="label label-success"><%= Tags[i].TNAME %></span>
-                          <% } else { %>
-                            <span class="label label-default"><%= Tags[i].TNAME %></span>
-                          <% } %>
-                        </a>
-                    </li>
-                <% } %>
-            </div>
-
+        <div class="col-md-8">
+            <img class="img-responsive" src="<%= Recipe.PHOTOS %>" alt="">
         </div>
-        <!-- /.row -->
-        <div class="row">
-          <div class="col-md-1">
-          </div>
-          <div class="col-md-10">
 
-            <%if (review) { %>
-              <a href="/comment?rid=<%= Recipe.RID %>" class="btn btn-danger">
-                <!-- <span class="glyphicon glyphicon-plus"></span>
-                <span class="sr-only">Add Price</span> -->
-                Create Review
-              </a>
+        <div class="col-md-4">
+            <h3><%= Recipe.TITLE %></h3>
+            <p><%= Recipe.DESCRIPTION %></p>
+            <h3>Element Details</h3>
+            <ul>
+              <% for(var i=0; i < elements.length; i++) { %>
+                  <li><%= elements[i].i_name %> : <%= elements[i].amount %></li>
+              <% } %>
+            </ul>
+            <h3>Related Tags</h3>
+            <% for(var i=0; i < Tags.length; i++) { %>
+                <li>
+                    <a href='tags?tag=<%= Tags[i].TNAME %>'>
+                      <%if (i < 3) { %>
+                        <span class="label label-primary"><%= Tags[i].TNAME %></span>
+                      <% } else if (i < 6) { %>
+                        <span class="label label-success"><%= Tags[i].TNAME %></span>
+                      <% } else { %>
+                        <span class="label label-default"><%= Tags[i].TNAME %></span>
+                      <% } %>
+                    </a>
+                </li>
             <% } %>
-            <a href="/reviewhis?rid=<%= Recipe.RID %>" class="btn btn-danger" style="float:right">
-              <!-- <span class="glyphicon glyphicon-plus"></span>
-              <span class="sr-only">Add Price</span> -->
-              View Reviews
-            </a>
-          </div>
-          <div class="col-md-1">
-          </div>
         </div>
-        <!-- Related Projects Row -->
-
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
 
     </div>
-    <!-- /.container -->
+    <!-- /.row -->
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-10">
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+        <%if (review) { %>
+          <a href="/comment?rid=<%= Recipe.RID %>" class="btn btn-danger">
+            <!-- <span class="glyphicon glyphicon-plus"></span>
+            <span class="sr-only">Add Price</span> -->
+            Create Review
+          </a>
+        <% } %>
+        <a href="/reviewhis?rid=<%= Recipe.RID %>" class="btn btn-danger" style="float:right">
+          <!-- <span class="glyphicon glyphicon-plus"></span>
+          <span class="sr-only">Add Price</span> -->
+          View Reviews
+        </a>
+      </div>
+      <div class="col-md-1">
+      </div>
+    </div>
+    <!-- Related Projects Row -->
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- /.row -->
 
-</body>
+    <hr>
 
-</html>
+</div>
+<script src="js/upload.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<%- include('./footer') %>

@@ -8,7 +8,7 @@ router.get('/', checkLogin, function (req, res) {
   res.render('postpage',{userinfo:true, uid:req.session.uid,nick_name:req.session.nick_name,login_name:req.session.login_name});
 });
 
-router.post('/', function (req, res) {
+router.post('/', checkLogin, function (req, res) {
   console.log('Now in ./posts, post',req.body);
   var title = req.body.title,
     description = req.body.description,
@@ -70,6 +70,10 @@ router.post('/', function (req, res) {
           var insert_Containing_query = 'INSERT INTO CONTAINING (RID,I_NAME,AMOUNT) VALUES("' + rid +'","'+ element+'","'+quantities[index] + '");';
           connection.query(insert_Containing_query, function(err, result) {
             if(err)throw err;
+            var insert_Post_query = 'INSERT INTO POST (user_name,rid) VALUES("' + req.session.uid +'","'+ rid+'");';
+            connection.query(insert_Post_query, function(err, result) {
+              if(err)throw err;
+            });
           });
         });
       });
