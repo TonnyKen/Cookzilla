@@ -4,11 +4,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('client-sessions');
 var flash = require('connect-flash');
-var csrf = require('csurf')
+var csrf = require('csurf');
 var routes = require('./routes');
 
 //var settings = require('./settings');
-var csrfProtection = csrf({ cookie: true })
+var csrfProtection = csrf({ cookie: true });
 
 var app = express();
 
@@ -29,7 +29,7 @@ app.use(session({
   cookieName: 'session',
   secret: 'random_string_goes_here',
   duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000
 }));
 app.use(flash());
 
